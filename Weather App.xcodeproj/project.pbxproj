@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0663CCE22CD04A6F00849E24 /* HourlyForecastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0663CCE12CD04A6F00849E24 /* HourlyForecastCollectionViewCell.swift */; };
+		0663CCE42CD07A4900849E24 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0663CCE32CD07A4900849E24 /* Color+Extensions.swift */; };
 		06DB57202CCDDFB7003A9F5D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DB571F2CCDDFB7003A9F5D /* AppDelegate.swift */; };
 		06DB57222CCDDFB7003A9F5D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DB57212CCDDFB7003A9F5D /* SceneDelegate.swift */; };
 		06DB57242CCDDFB7003A9F5D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DB57232CCDDFB7003A9F5D /* ViewController.swift */; };
@@ -15,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0663CCE12CD04A6F00849E24 /* HourlyForecastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyForecastCollectionViewCell.swift; sourceTree = "<group>"; };
+		0663CCE32CD07A4900849E24 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 		06DB571C2CCDDFB7003A9F5D /* Weather App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		06DB571F2CCDDFB7003A9F5D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06DB57212CCDDFB7003A9F5D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -57,6 +61,8 @@
 				06DB571F2CCDDFB7003A9F5D /* AppDelegate.swift */,
 				06DB57212CCDDFB7003A9F5D /* SceneDelegate.swift */,
 				06DB57232CCDDFB7003A9F5D /* ViewController.swift */,
+				0663CCE12CD04A6F00849E24 /* HourlyForecastCollectionViewCell.swift */,
+				0663CCE32CD07A4900849E24 /* Color+Extensions.swift */,
 				06DB57282CCDDFB9003A9F5D /* Assets.xcassets */,
 				06DB572A2CCDDFB9003A9F5D /* LaunchScreen.storyboard */,
 				06DB572D2CCDDFB9003A9F5D /* Info.plist */,
@@ -134,8 +140,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0663CCE42CD07A4900849E24 /* Color+Extensions.swift in Sources */,
 				06DB57242CCDDFB7003A9F5D /* ViewController.swift in Sources */,
 				06DB57202CCDDFB7003A9F5D /* AppDelegate.swift in Sources */,
+				0663CCE22CD04A6F00849E24 /* HourlyForecastCollectionViewCell.swift in Sources */,
 				06DB57222CCDDFB7003A9F5D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,7 +307,7 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -329,7 +337,7 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
