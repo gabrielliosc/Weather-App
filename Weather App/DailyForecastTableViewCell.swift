@@ -56,6 +56,12 @@ class DailyForecastTableViewCell: UITableViewCell {
         return stackView
     }()
     
+    func loadData(weekDay: String?, min: String?, max: String?, icon: UIImage?){
+        weekDayLabel.text = weekDay
+        minTemperatureLabel.text = "min \(min ?? "")"
+        maxTemperatureLabel.text = "min \(max ?? "")"
+        iconImage.image = icon
+    }
     private func setupView() {
         backgroundColor = .clear
         selectionStyle = .none
@@ -78,7 +84,8 @@ class DailyForecastTableViewCell: UITableViewCell {
         ])
         
         NSLayoutConstraint.activate([
-            weekDayLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 50)
+            weekDayLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 50),
+            iconImage.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
     

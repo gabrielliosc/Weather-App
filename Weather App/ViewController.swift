@@ -155,12 +155,34 @@ class ViewController: UIViewController {
         return tableView
     }()
     
+    private let service = Service()
+    private let city = City(lat: "-23", lon: "-46", name: "SP")
+    private var forecastResponse: ForecastResponse?
+    
     override func viewDidLoad() { //Método executado quando o ViewController for carregado
         super.viewDidLoad()
-        
         setupView()
+        fetchData()
     }
     
+    private func fetchData(){
+        service.fetchData(city: city){ [weak self] response in //Retain Cycle
+            self?.forecastResponse = response
+            DispatchQueue.main.async {
+                self?.loadData()
+            }
+        }
+    }
+    
+    private func loadData(){
+        cityLabel.text = city.name
+        temperatureLabel.text = "\(Int(forecastResponse?.current.temp ?? 0)) C"
+        humidityValueLabel.text = "\(forecastResponse?.current.humidity ?? 0)mm"
+        windyValueLabel.text = "\(forecastResponse?.current.windSpeed ?? 0)km/h"
+        
+        hourlyCollectionView.reloadData()
+        dailyForecastTableView.reloadData()
+    }
 //    override func viewDidAppear(_ animated: Bool) { //É executado toda vez que a ViewController aparece na tela
 //        super.viewDidAppear(animated)
 //    }
@@ -284,11 +306,15 @@ class ViewController: UIViewController {
 
 extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        forecastResponse?.hourly.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HourlyForecast", for: indexPath)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HourlyForecastCollectionViewCell.indentifier, for: indexPath) as? HourlyForecastCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        let forecast = forecastResponse?.hourly[indexPath.row]
+        cell.loadData(time: "\(Int(forecast?.dt ?? 0)) C", icon: UIImage(named: "icon"), temp: "\(Int(forecast?.temp ?? 0)) C")
         
         return cell
     }
@@ -296,11 +322,16 @@ extension ViewController: UICollectionViewDataSource {
 
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10 //Quando tem apenas uma linha pode colocar sem o termi "return"
+        //return 10 //Quando tem apenas uma linha pode colocar sem o termi "return"
+        forecastResponse?.daily.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DailyForecast", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: DailyForecastTableViewCell.indentifier, for: indexPath) as? DailyForecastTableViewCell else {
+            return UITableViewCell()
+        }
+        let forecast = forecastResponse?.daily[indexPath.row]
+        cell.loadData(weekDay: "\(Int(forecast?.dt ?? 0))", min: "\(Int(forecast?.temp.min ?? 0)) C", max: "\(Int(forecast?.temp.max ?? 0)) C", icon: UIImage(named: "cloudIcon"))
         return cell
     }
     
